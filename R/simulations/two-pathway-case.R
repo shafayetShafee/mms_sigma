@@ -226,12 +226,18 @@ tbl_caption <- paste0(
   "($\\widehat{\\mathrm{MMS}}$), and degree of suppression ($\\hat{\\sigma}$) ",
   "in the two-pathway setting under consistent mediation, inconsistent ",
   "mediation, and near-perfect suppression. ",
-  "The true direct effect (DE = ", sprintf("%.2f", DELTA_TRUE), ") is the ",
+  "The true direct effect (DE = ",
+  sprintf("%.2f", DELTA_TRUE),
+  ") is the ",
   "same in all scenarios. The scenarios differ in the true indirect effect ",
   "(IE) and, consequently, in the true total effect (TE); these are given ",
   "in the panel headers. ",
-  "Each row summarises ", format(N_REPS, big.mark = ","), " simulated ",
-  "datasets of size ", N_OBS, " by the minimum, first quartile (Q1), ",
+  "Each row summarises ",
+  format(N_REPS, big.mark = ","),
+  " simulated ",
+  "datasets of size ",
+  N_OBS,
+  " by the minimum, first quartile (Q1), ",
   "median (Q2), third quartile (Q3), and maximum of the estimates."
 )
 

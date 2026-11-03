@@ -100,11 +100,11 @@ compute_measures <- function(de, ie, tol = ZERO_TOL) {
 # variance (delta + beta * gamma)^2 + (beta * sd_m)^2, so the marginal
 # prevalence is a one-dimensional integral that is solved for the intercept.
 calibrate_intercept <- function(
-    beta,
-    prevalence = PREVALENCE,
-    gamma = GAMMA_TRUE,
-    delta = DELTA_TRUE,
-    sd_m = SD_M
+  beta,
+  prevalence = PREVALENCE,
+  gamma = GAMMA_TRUE,
+  delta = DELTA_TRUE,
+  sd_m = SD_M
 ) {
   sd_linear_predictor <- sqrt((delta + beta * gamma)^2 + (beta * sd_m)^2)
 
@@ -122,12 +122,12 @@ calibrate_intercept <- function(
 INTERCEPT_SCENARIOS <- vapply(BETA_SCENARIOS, calibrate_intercept, numeric(1))
 
 simulate_dataset <- function(
-    beta,
-    intercept,
-    n_obs = N_OBS,
-    gamma = GAMMA_TRUE,
-    delta = DELTA_TRUE,
-    sd_m = SD_M
+  beta,
+  intercept,
+  n_obs = N_OBS,
+  gamma = GAMMA_TRUE,
+  delta = DELTA_TRUE,
+  sd_m = SD_M
 ) {
   tibble(
     X = rnorm(n_obs),
@@ -147,11 +147,11 @@ estimate_measures <- function(data) {
 }
 
 run_scenario <- function(
-    beta,
-    intercept,
-    scenario,
-    n_reps = N_REPS,
-    report_every = REPORT_EVERY
+  beta,
+  intercept,
+  scenario,
+  n_reps = N_REPS,
+  report_every = REPORT_EVERY
 ) {
   lapply(
     seq_len(n_reps),
@@ -291,13 +291,20 @@ tbl_caption <- paste0(
   "for a binary outcome under consistent mediation, inconsistent mediation, ",
   "and near-perfect suppression. ",
   "Effects and measures are computed on the log-odds scale, and the outcome ",
-  "prevalence is ", sprintf("%d\\%%", round(PREVALENCE * 100)), ". ",
-  "The true direct effect ($\\mathrm{DE} = ", sprintf("%.2f", DELTA_TRUE),
+  "prevalence is ",
+  sprintf("%d\\%%", round(PREVALENCE * 100)),
+  ". ",
+  "The true direct effect ($\\mathrm{DE} = ",
+  sprintf("%.2f", DELTA_TRUE),
   "$) is the same in all scenarios. The scenarios differ in the true ",
   "indirect effect ($\\mathrm{IE}$) and, consequently, in the true total ",
   "effect ($\\mathrm{TE}$); these are given in the panel headers. ",
-  "Each row summarises ", format(N_REPS, big.mark = ","), " simulated ",
-  "datasets of size ", format(N_OBS, big.mark = ","), " by the minimum, ",
+  "Each row summarises ",
+  format(N_REPS, big.mark = ","),
+  " simulated ",
+  "datasets of size ",
+  format(N_OBS, big.mark = ","),
+  " by the minimum, ",
   "first quartile (Q1), median (Q2), third quartile (Q3), and maximum of the ",
   "estimates."
 )

@@ -4,9 +4,9 @@ library(ggthemes)
 
 # Table Formatters --------------------------------------------------------
 polish_latex_table <- function(
-    tbl,
-    midrule_gap = "0.8em",
-    tabcolsep = "10pt"
+  tbl,
+  midrule_gap = "0.8em",
+  tabcolsep = "10pt"
 ) {
   x <- as.character(tbl)
 
@@ -44,8 +44,8 @@ fmt_num <- function(x, digits = TABLE_DIGITS) {
 
 # Font Family  ------------------------------------------------------------
 get_base_family <- function(
-    preferred = "Libertinus Serif",
-    fallback = "Times"
+  preferred = "Libertinus Serif",
+  fallback = "Times"
 ) {
   families <- unique(systemfonts::system_fonts()$family)
   idx <- which(tolower(families) == tolower(preferred))
@@ -57,9 +57,9 @@ BASE_FAMILY <- get_base_family()
 
 # ggplot2 customized theme for publications -------------------------------
 theme_publication <- function(
-    base_size = 14,
-    base_family = BASE_FAMILY,
-    axes = c("box", "float")
+  base_size = 14,
+  base_family = BASE_FAMILY,
+  axes = c("box", "float")
 ) {
   axes <- match.arg(axes)
 
@@ -121,12 +121,12 @@ float_axes <- function() {
 
 # Saving Figure -----------------------------------------------------------
 save_figure <- function(
-    plot,
-    name,
-    width,
-    height,
-    fig_path,
-    family = BASE_FAMILY
+  plot,
+  name,
+  width,
+  height,
+  fig_path,
+  family = BASE_FAMILY
 ) {
   path <- paste0(fig_path, name)
 

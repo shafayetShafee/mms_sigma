@@ -65,7 +65,7 @@ p_pm <- grid_long |>
     )
   ) +
   coord_equal(expand = FALSE) +
-  facet_wrap(~ measure) +
+  facet_wrap(~measure) +
   labs(
     x = "DE",
     y = "IE",
@@ -98,7 +98,7 @@ p_mms <- grid_long |>
     )
   ) +
   coord_equal(expand = FALSE) +
-  facet_wrap(~ measure) +
+  facet_wrap(~measure) +
   labs(
     x = "DE",
     y = NULL,
@@ -108,8 +108,7 @@ p_mms <- grid_long |>
   theme_publication(base_size = 16) +
   theme(legend.position = "right")
 
-p_heat <- p_pm + p_mms +
-  plot_layout(ncol = 2, widths = c(1, 1))
+p_heat <- p_pm + p_mms + plot_layout(ncol = 2, widths = c(1, 1))
 
 p_heat
 
