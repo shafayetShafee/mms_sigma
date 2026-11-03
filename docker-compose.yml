@@ -1,0 +1,10 @@
+name: mms-sigma
+
+services:
+  rstudio:
+    image: ghcr.io/shafayetshafee/mms_sigma:0.0.9
+    container_name: mms_sigma
+    ports:
+      - "127.0.0.1:8787:8787"
+    environment:
+      DISABLE_AUTH: "true"

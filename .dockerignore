@@ -1,0 +1,18 @@
+# R and renv caches (never copy host library into image)
+renv/library/
+renv/staging/
+renv/.cache/
+
+# R session files
+.Rhistory
+.RData
+.Rproj.user/
+
+# Docker stuff
+docker-compose.yml
+Dockerfile
+
+# System/output
+.git
+.gitignore
+

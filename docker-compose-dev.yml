@@ -1,0 +1,12 @@
+name: mms-sigma-dev
+
+services:
+  rstudio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:8787:8787"
+    environment:
+      DISABLE_AUTH: "true"
+
