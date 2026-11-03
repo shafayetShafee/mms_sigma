@@ -1,7 +1,10 @@
 [![R version](https://img.shields.io/badge/R-4.6.1-blue.svg)](https://cran.r-project.org/)
 [![Reproducible Environment: renv](https://img.shields.io/badge/reproducible%20environment-renv-lightgreen.svg)](https://rstudio.github.io/renv/)
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-orange.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-orange.svg)](LICENSE.md)
 [![Formatted with air v0.13.0](https://img.shields.io/badge/formatted%20with-air%200.13.0-purple)](https://github.com/posit-dev/air)
+[![Docker build](https://github.com/shafayetShafee/mms_sigma/actions/workflows/docker_publish.yml/badge.svg)](https://github.com/shafayetShafee/mms_sigma/actions/workflows/docker_publish.yml)
+[![Docker image](https://img.shields.io/badge/Docker-ghcr.io-2496ED?logo=docker&logoColor=white)](https://github.com/shafayetShafee/mms_sigma/pkgs/container/mms_sigma)
+[![Release](https://img.shields.io/github/v/release/shafayetShafee/mms_sigma)](https://github.com/shafayetShafee/mms_sigma/releases)
 
 > [!NOTE]
 > This repository contains the data and R code necessary to replicate the findings
