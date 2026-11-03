@@ -2,8 +2,8 @@
 [![Reproducible Environment: renv](https://img.shields.io/badge/reproducible%20environment-renv-lightgreen.svg)](https://rstudio.github.io/renv/)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-orange.svg)](LICENSE.md)
 [![Formatted with air v0.13.0](https://img.shields.io/badge/formatted%20with-air%200.13.0-purple)](https://github.com/posit-dev/air)
-[![Docker build](https://github.com/shafayetShafee/mms_sigma/actions/workflows/docker_publish.yml/badge.svg)](https://github.com/shafayetShafee/mms_sigma/actions/workflows/docker_publish.yml)
-[![Docker image](https://img.shields.io/badge/Docker-ghcr.io-2496ED?logo=docker&logoColor=white)](https://github.com/shafayetShafee/mms_sigma/pkgs/container/mms_sigma)
+[![Docker Image](https://img.shields.io/badge/docker-ghcr.io/shafayetshafee/mms_sigma-blue?logo=docker)](https://ghcr.io/shafayetshafee/mms_sigma)
+[![Workflow](https://github.com/shafayetShafee/mms_sigma/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/shafayetShafee/mms_sigma/actions/workflows/docker-publish.yml)
 [![Release](https://img.shields.io/github/v/release/shafayetShafee/mms_sigma)](https://github.com/shafayetShafee/mms_sigma/releases)
 
 > [!NOTE]
