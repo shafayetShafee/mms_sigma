@@ -214,6 +214,27 @@ table_data <- bind_rows(
 ) |>
   select(scenario, row_label, value)
 
+# True values of each measure, keyed by the same row labels as the table
+true_long <- bind_rows(
+  true_measures |>
+    pivot_longer(
+      cols = c(PM, MMS),
+      names_to = "measure",
+      values_to = "true"
+    ) |>
+    mutate(
+      row_label = sprintf(
+        "$\\widehat{\\mathrm{%s}}_%d$",
+        measure,
+        as.integer(mediator)
+      )
+    ) |>
+    select(scenario, row_label, true),
+  true_measures |>
+    distinct(scenario, sigma) |>
+    transmute(scenario, row_label = SIGMA_LABEL, true = sigma)
+)
+
 summary_table <- table_data |>
   group_by(scenario, row_label) |>
   summarise(
@@ -224,6 +245,8 @@ summary_table <- table_data |>
     max = max(value, na.rm = TRUE),
     .groups = "drop"
   ) |>
+  left_join(true_long, by = c("scenario", "row_label")) |>
+  relocate(true, .before = min) |>
   mutate(
     scenario = factor(scenario, levels = SCENARIO_ORDER),
     row_label = factor(row_label, levels = ROW_LABELS)
@@ -239,7 +262,7 @@ saveRDS(
 
 # Preparing LaTeX Table ---------------------------------------------------
 summary_table_fmt <- summary_table |>
-  mutate(across(c(min, q1, median, q3, max), fmt_num))
+  mutate(across(c(true, min, q1, median, q3, max), fmt_num))
 
 panel_labels <- vapply(
   SCENARIO_ORDER,
@@ -268,31 +291,33 @@ panel_index <- setNames(
 )
 
 tbl_caption <- paste0(
-  "Simulated sampling distributions of the estimated proportion mediated ",
-  "($\\widehat{\\mathrm{PM}}_k$) and mediated magnitude share ",
-  "($\\widehat{\\mathrm{MMS}}_k$) for each of three parallel mediators ",
-  "($k = 1, 2, 3$), and of the estimated degree of suppression ",
-  "($\\hat{\\sigma}$), under consistent and inconsistent mediation. ",
-  "The true direct effect (DE = ",
+  "Simulated sampling distributions of the pathway-specific proportion ",
+  "mediated ($\\widehat{\\mathrm{PM}}_i$) and mediated magnitude share ",
+  "($\\widehat{\\mathrm{MMS}}_i$) for three parallel mediators ",
+  "($i = 1, 2, 3$), and of the degree of suppression ($\\hat{\\sigma}$), ",
+  "under consistent and inconsistent mediation. ",
+  "The first column gives the true value of each measure. ",
+  "The true direct effect ($\\mathrm{DE} = ",
   sprintf("%.2f", DELTA_TRUE),
-  ") and the ",
-  "true indirect effect through the second mediator (IE$_{",
+  "$) and the true indirect effect through the second mediator ",
+  "($\\mathrm{IE}_{",
   SHARED_IE,
-  "}$ = ",
+  "} = ",
   sprintf("%.2f", IE_TRUE[[1]][SHARED_IE]),
-  ") are the same in both ",
-  "scenarios. The scenarios differ in the true indirect effects through the ",
-  "first and third mediators (IE$_1$ and IE$_3$) and, consequently, in the ",
-  "true total effect (TE); these are given in the panel headers. ",
-  "The degree of suppression describes the model as a whole and is reported ",
-  "once per scenario. ",
-  "Each row summarises ",
+  "$) are the same in both scenarios. The scenarios differ in the true ",
+  "indirect effects through the first and third mediators ",
+  "($\\mathrm{IE}_1$ and $\\mathrm{IE}_3$) and, consequently, in the true ",
+  "total effect ($\\mathrm{TE}$); these are given in the panel headers. ",
+  "The degree of suppression describes the system as a whole and is ",
+  "reported once per scenario. ",
+  "Each row summarizes ",
   format(N_REPS, big.mark = ","),
   " simulated ",
   "datasets of size ",
-  N_OBS,
-  " by the minimum, first quartile (Q1), ",
-  "median (Q2), third quartile (Q3), and maximum of the estimates."
+  format(N_OBS, big.mark = ","),
+  " by the minimum, ",
+  "first quartile (Q1), median, third quartile (Q3), and maximum of the ",
+  "estimates."
 )
 
 last_rows <- head(cumsum(panel_index), -1)
@@ -304,10 +329,10 @@ tbl_latex <- summary_table_fmt |>
     booktabs = TRUE,
     escape = FALSE,
     linesep = "\\addlinespace[4pt]",
-    align = "lrrrrr",
-    col.names = c("", "Min", "Q1", "Q2", "Q3", "Max"),
+    align = "lrrrrrr",
+    col.names = c("", "True", "Min", "Q1", "Median", "Q3", "Max"),
     caption = tbl_caption,
-    label = "tbl-multi-pathway"
+    label = "s1-multiple"
   ) |>
   row_spec(last_rows, extra_latex_after = "\\midrule") |>
   pack_rows(
@@ -322,7 +347,7 @@ tbl_latex <- summary_table_fmt |>
     latex_options = "hold_position",
     font_size = TABLE_FONT_SIZE
   ) |>
-  polish_latex_table(midrule_gap = "0.8em", tabcolsep = "10pt")
+  polish_latex_table(midrule_gap = "0.8em", tabcolsep = "7pt")
 
 saveRDS(
   tbl_latex,

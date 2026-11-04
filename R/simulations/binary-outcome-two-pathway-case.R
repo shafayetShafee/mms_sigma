@@ -288,10 +288,10 @@ tbl_caption <- paste0(
   "Simulated sampling distributions of the estimated proportion mediated ",
   "($\\widehat{\\mathrm{PM}}$), mediated magnitude share ",
   "($\\widehat{\\mathrm{MMS}}$), and degree of suppression ($\\hat{\\sigma}$) ",
-  "for a binary outcome under consistent mediation, inconsistent mediation, ",
-  "and near-perfect suppression. ",
-  "Effects and measures are computed on the log-odds scale, and the outcome ",
-  "prevalence is ",
+  "for a single mediator and a binary outcome under consistent mediation, ",
+  "inconsistent mediation, and near-perfect suppression. ",
+  "Effects and measures are computed on the log-odds scale, and the marginal ",
+  "outcome prevalence is ",
   sprintf("%d\\%%", round(PREVALENCE * 100)),
   ". ",
   "The true direct effect ($\\mathrm{DE} = ",
@@ -299,13 +299,13 @@ tbl_caption <- paste0(
   "$) is the same in all scenarios. The scenarios differ in the true ",
   "indirect effect ($\\mathrm{IE}$) and, consequently, in the true total ",
   "effect ($\\mathrm{TE}$); these are given in the panel headers. ",
-  "Each row summarises ",
+  "Each row summarizes ",
   format(N_REPS, big.mark = ","),
   " simulated ",
   "datasets of size ",
   format(N_OBS, big.mark = ","),
   " by the minimum, ",
-  "first quartile (Q1), median (Q2), third quartile (Q3), and maximum of the ",
+  "first quartile (Q1), median, third quartile (Q3), and maximum of the ",
   "estimates."
 )
 
@@ -317,9 +317,9 @@ tbl_latex <- summary_table_fmt |>
     format = "latex",
     booktabs = TRUE,
     escape = FALSE,
-    linesep = "\\addlinespace[4pt]",
+    linesep = "",
     align = "lrrrrr",
-    col.names = c("", "Min", "Q1", "Q2", "Q3", "Max"),
+    col.names = c("", "Min", "Q1", "Median", "Q3", "Max"),
     caption = tbl_caption,
     label = "tbl-binary-out"
   ) |>
@@ -330,13 +330,13 @@ tbl_latex <- summary_table_fmt |>
     italic = FALSE,
     escape = FALSE,
     latex_align = "l",
-    extra_latex_after = "\\addlinespace[4pt]"
+    extra_latex_after = "\\addlinespace[3pt]"
   ) |>
   kable_styling(
     latex_options = "hold_position",
     font_size = TABLE_FONT_SIZE
   ) |>
-  polish_latex_table(midrule_gap = "0.8em", tabcolsep = "12pt")
+  polish_latex_table(midrule_gap = "0.6em", tabcolsep = "8pt")
 
 saveRDS(
   tbl_latex,
