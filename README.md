@@ -5,6 +5,7 @@
 [![Docker Image](https://img.shields.io/badge/docker-ghcr.io/shafayetshafee/mms_sigma-blue?logo=docker)](https://ghcr.io/shafayetshafee/mms_sigma)
 [![Workflow](https://github.com/shafayetShafee/mms_sigma/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/shafayetShafee/mms_sigma/actions/workflows/docker-publish.yml)
 [![Release](https://img.shields.io/github/v/release/shafayetShafee/mms_sigma)](https://github.com/shafayetShafee/mms_sigma/releases)
+[![DOI](https://img.shields.io/badge/DOI-10.6084%2Fm9.figshare.34925217-cyan)](https://doi.org/10.6084/m9.figshare.34925217)
 
 > [!NOTE]
 > This repository contains the data and R code necessary to replicate the findings
