@@ -222,15 +222,16 @@ summary_table_fmt <- summary_table |>
 
 tbl_caption <- paste0(
   "Simulated sampling distributions of the estimated proportion mediated ",
-  "($\\widehat{\\mathrm{PM}}$), mediated magnitude share ",
-  "($\\widehat{\\mathrm{MMS}}$), and degree of suppression ($\\hat{\\sigma}$) ",
+  "$(\\widehat{\\mathrm{PM}})$, mediated magnitude share ",
+  "$(\\widehat{\\mathrm{MMS}})$, and degree of suppression ",
+  "$(\\hat{\\sigma})$ ",
   "for a single mediator and a continuous outcome under consistent mediation, ",
   "inconsistent mediation, and near-perfect suppression. ",
-  "The true direct effect ($\\mathrm{DE} = ",
+  "The true direct effect $(\\mathrm{DE} = ",
   sprintf("%.2f", DELTA_TRUE),
-  "$) is the same in all scenarios. The scenarios differ in the true ",
-  "indirect effect ($\\mathrm{IE}$) and, consequently, in the true total ",
-  "effect ($\\mathrm{TE}$); these are given in the panel headers. ",
+  ")$ is the same in all scenarios. The scenarios differ in the true ",
+  "indirect effect $(\\mathrm{IE})$ and, consequently, in the true total ",
+  "effect $(\\mathrm{TE})$; these are given in the panel headers. ",
   "Each row summarizes ",
   format(N_REPS, big.mark = ","),
   " simulated ",
@@ -240,6 +241,7 @@ tbl_caption <- paste0(
   "first quartile (Q1), median, third quartile (Q3), and maximum of the ",
   "estimates."
 )
+
 last_rows <- head(cumsum(panel_index), -1)
 
 tbl_latex <- summary_table_fmt |>
